@@ -3,6 +3,8 @@ install:
   - composer install
 before_script:
   - phpenv config-add myconfig.ini
+services:
+  - memcached
 php:
   - "5.5"
   - "5.4"
