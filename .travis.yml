@@ -2,6 +2,7 @@ language: php
 install:
   - composer install
 before_script:
+  - ./tests/apcu-install.sh
   - phpenv config-add tests/travis.ini
 services:
   - memcached
