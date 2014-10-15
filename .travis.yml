@@ -2,7 +2,7 @@ language: php
 install:
   - composer install
 before_script:
-  - phpenv config-add myconfig.ini
+  - phpenv config-add tests/travis.ini
 services:
   - memcached
 php:
