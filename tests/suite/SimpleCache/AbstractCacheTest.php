@@ -7,10 +7,17 @@ abstract class AbstractCacheTest extends \PHPUnit_Framework_TestCase {
 	public abstract function getPrefix();
 	
 	public function testInteger() {
-		$this->provider->delete($this->getPrefix() . '_integer');
+		$key = $this->getPrefix() . '_integer';
 		
-		$this->provider->store($this->getPrefix() . '_integer', 100, 60);
-		$value = $this->provider->fetch($this->getPrefix() . '_integer');
+		if ($this->provider->exists($key)) {
+			$this->provider->delete($key);
+		}
+		
+		$success = $this->provider->store($key, 100, 60);
+		$this->assertTrue($success);
+		$exists = $this->provider->exists($key);
+		$this->assertTrue($exists);
+		$value = $this->provider->fetch($key);
 		$this->assertEquals(100, $value);
 	}
 	
