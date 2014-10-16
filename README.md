@@ -3,21 +3,23 @@ simplecache
 
 A simple cache library for PHP
 
-Author: Emmanuel Antico
-Last Modification: 2014/10/15
+Author: Emmanuel Antico<br/>
+Last Modification: 2014/10/15<br/>
 Version: 1.0
 
 [![Build Status](https://travis-ci.org/emaphp/simplecache.svg?branch=master)](https://travis-ci.org/emaphp/simplecache)
 
-
+<br/>
 ####Description
 
 Simplecache is a small PHP library that provides some useful caching classes compatible with APC and Memcache.
 
+<br/>
 ####Dependencies
 
 None
 
+<br/>
 ####Installation
 
 ```json
@@ -28,6 +30,7 @@ None
 }
 ```
 
+<br/>
 ####Usage
 
 ```php
@@ -51,7 +54,8 @@ $provider->delete('message');
 $provider->exists('message'); // returns false
 ```
 
-#####Memcache
+<br/>
+**Memcache**
 
 There are 2 classes available for memcache servers: *MemcacheProvider* and *MemcachedProvider*. Both must specify the server location during initialization.
 
@@ -68,6 +72,8 @@ $provider = new MemcachedProvider();
 $provider->addServer('localhost', 11211);
 ```
 
+
+<br/>
 ####License
 
 Licensed under the Apache License, Version 2.0.
