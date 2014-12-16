@@ -4,7 +4,7 @@ simplecache
 A simple cache library for PHP
 
 Author: Emmanuel Antico<br/>
-Last Modification: 2014/10/15<br/>
+Last Modification: 2014/12/16<br/>
 Version: 1.0
 
 [![Build Status](https://travis-ci.org/emaphp/simplecache.svg?branch=master)](https://travis-ci.org/emaphp/simplecache)

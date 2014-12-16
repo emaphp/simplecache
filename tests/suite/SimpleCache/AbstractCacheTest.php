@@ -1,6 +1,8 @@
 <?php
 namespace SimpleCache;
 
+use SimpleCache\Fixtures\User;
+
 abstract class AbstractCacheTest extends \PHPUnit_Framework_TestCase {
 	protected $provider;
 	
@@ -102,6 +104,38 @@ abstract class AbstractCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertArrayHasKey(2, $value->arr);
 		$this->assertInternalType('float', $value->arr[2]);
 		$this->assertEquals(2.5, $value->arr[2]);
+	}
+	
+	public function testClassMetadata() {
+		$key = $this->getPrefix() . '_metaobj';
+		$this->provider->delete($key);
+		
+		$meta = new \stdClass();
+		$meta->int = 1001;
+		$meta->str = 'test';
+		
+		$user = new User();
+		$user->setId(100);
+		$user->setEmail('emaphp@github.com');
+		$user->setName('emaphp');
+		$user->__META = $meta;
+		
+		$this->provider->store($key, $user);
+		
+		//validate stored data
+		$user = $this->provider->fetch($key);
+		$this->assertInstanceOf('SimpleCache\Fixtures\User', $user);
+		
+		$this->assertEquals(100, $user->getId());
+		$this->assertEquals('emaphp', $user->getName());
+		$this->assertEquals('emaphp@github.com', $user->getEmail());
+		$this->assertObjectHasAttribute('__META', $user);
+		$meta = $user->__META;
+		$this->assertInstanceOf('stdClass', $meta);
+		$this->assertObjectHasAttribute('int', $meta);
+		$this->assertObjectHasAttribute('str', $meta);
+		$this->assertEquals(1001, $meta->int);
+		$this->assertEquals('test', $meta->str);
 	}
 }
 ?>
