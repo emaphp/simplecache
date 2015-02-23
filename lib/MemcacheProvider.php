@@ -27,16 +27,13 @@ class MemcacheProvider implements CacheProvider {
 	 */
 	public function __construct($host = 'localhost', $port = 11211) {
 		//check if memcache is available
-		if (!class_exists('\Memcache')) {
+		if (!class_exists('\Memcache'))
 			throw new \RuntimeException("Memcache extension was not found on this server");
-		}
 		
 		//connnect to Memcache server
 		$this->memcache = @memcache_connect($host, $port);
-		
-		if ($this->memcache === false) {
+		if ($this->memcache === false)
 			throw new \RuntimeException("Connection to memcache server on '" . $host. "' (" . $port . ") failed");
-		}
 	}
 	
 	public function store($id, $value, $ttl = 0) {
@@ -45,10 +42,8 @@ class MemcacheProvider implements CacheProvider {
 	
 	public function exists($id) {
 		$success = $this->memcache->add($id, 0);
-		
-		if (!$success) {
+		if (!$success)
 			return true;
-		}
 		
 		$this->memcache->delete($id);
 		return false;
@@ -66,4 +61,3 @@ class MemcacheProvider implements CacheProvider {
 		return call_user_func_array(array($this->memcache, $method), $args);
 	}
 }
-?>

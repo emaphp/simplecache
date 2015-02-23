@@ -10,13 +10,15 @@ interface CacheProvider {
 	 * Stores a value in cache
 	 * @param string $id Cache key
 	 * @param mixed $value The value to store
-	 * @param int $ttl Time to live
+	 * @param int $ttl Amount of time a value is considered up-to-date
+	 * @return boolean
 	 */
 	public function store($id, $value, $ttl = 0);
 	
 	/**
 	 * Checks if a value exists in cache
 	 * @param string $id
+	 * @return boolean
 	 */
 	public function exists($id);
 	
@@ -33,4 +35,3 @@ interface CacheProvider {
 	 */
 	public function delete($id);
 }
-?>

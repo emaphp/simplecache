@@ -21,18 +21,16 @@ class MemcachedProvider implements CacheProvider {
 	 */
 	public function __construct($cache_id = null, $options = null) {
 		//check installed library
-		if (!class_exists('\Memcached')) {
+		if (!class_exists('\Memcached'))
 			throw new \RuntimeException("Memcached extension was not found on this server");
-		}
 		
 		//create a new memcached instance with the given id
 		$this->memcached = is_null($cache_id) ? new \Memcached() : new \Memcached($cache_id);
 		
 		if (is_array($options) && !empty($options)) {
 			// set instance options
-			foreach ($options as $option => $value) {
+			foreach ($options as $option => $value)
 				$this->memcached->setOption($option, $value);
-			}
 		}
 	}
 	
@@ -42,10 +40,8 @@ class MemcachedProvider implements CacheProvider {
 	
 	public function exists($id) {
 		$success = $this->memcached->add($id, 0);
-		
-		if (!$success) {
+		if (!$success)
 			return true;
-		}
 		
 		$this->memcached->delete($id);
 		return false;

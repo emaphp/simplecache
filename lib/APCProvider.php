@@ -12,9 +12,8 @@ class APCProvider implements CacheProvider {
 	 * @throws \RuntimeException
 	 */
 	public function __construct() {
-		if (!(extension_loaded('apc') && ini_get('apc.enabled'))) {
+		if (!(extension_loaded('apc') && ini_get('apc.enabled')))
 			throw new \RuntimeException("APC extension is not enabled on this server");
-		}
 	}
 	
 	public function store($id, $value, $ttl = 0) {
@@ -22,9 +21,8 @@ class APCProvider implements CacheProvider {
 	}
 	
 	public function exists($id) {
-		if (function_exists('apc_exists')) {
+		if (function_exists('apc_exists'))
 			return apc_exists($id);
-		}
 		
 		return apc_fetch($id) === false ? false : true;
 	}
@@ -37,4 +35,3 @@ class APCProvider implements CacheProvider {
 		return apc_delete($id);
 	}
 }
-?>

@@ -3,11 +3,15 @@ simplecache
 
 A simple cache library for PHP
 
-Author: Emmanuel Antico<br/>
-Last Modification: 2014/12/16<br/>
-Version: 1.0
-
 [![Build Status](https://travis-ci.org/emaphp/simplecache.svg?branch=master)](https://travis-ci.org/emaphp/simplecache)
+
+<br/>
+####Changelog
+
+**2014-02-23**
+
+ * Moved to PSR-4.
+ * Added class 'TestProvider'. This class stores values in an internal hash for testing purposes.
 
 <br/>
 ####Description
@@ -25,7 +29,7 @@ None
 ```json
 {
     "require": {
-        "emaphp/simplecache": "1.0.*"
+        "emaphp/simplecache": "1.1.*"
     }
 }
 ```
